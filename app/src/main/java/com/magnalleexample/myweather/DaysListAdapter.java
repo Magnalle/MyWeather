@@ -22,9 +22,9 @@ public class DaysListAdapter
         {
             super(view);
             temperature = (TextView)view
-                    .findViewById(R.id.temperature);
+                    .findViewById(R.id.temperatureView);
             weekday = (TextView)view
-                    .findViewById(R.id.weekday);
+                    .findViewById(R.id.weekdayView);
         }
     }
 

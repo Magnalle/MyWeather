@@ -21,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        recyclerView = (RecyclerView)findViewById(R.id.list_days);
-        TextView currentTemperature = (TextView)findViewById(R.id.temperature);
+        recyclerView = (RecyclerView)findViewById(R.id.daysRecycleView);
+        TextView currentTemperature = (TextView)findViewById(R.id.temperatureView);
         currentTemperature.setText(Integer.toString(-25));
 
         AddItemsToRecyclerViewArrayList();

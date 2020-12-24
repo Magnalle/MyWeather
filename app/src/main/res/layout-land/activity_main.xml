@@ -8,20 +8,20 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/place"
+        android:id="@+id/cityView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/img_current_weather"
+        app:layout_constraintEnd_toEndOf="@+id/currentWeatherImg"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Красноярск" />
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_days"
+        android:id="@+id/daysRecycleView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -32,53 +32,53 @@
         android:orientation="horizontal"
         android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/img_current_weather"
+        app:layout_constraintStart_toEndOf="@+id/currentWeatherImg"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_days_list" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_time_of_day"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="#51DDE9FD"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/img_current_weather"
-        app:layout_constraintTop_toBottomOf="@+id/list_days"></androidx.recyclerview.widget.RecyclerView>
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/timeOfDayRecycleView"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:background="#51DDE9FD"-->
+<!--        android:orientation="horizontal"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/currentWeatherImg"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/daysRecycleView" />-->
 
 
     <ImageView
-        android:id="@+id/img_current_weather"
+        android:id="@+id/currentWeatherImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/place"
+        app:layout_constraintTop_toBottomOf="@+id/cityView"
         app:srcCompat="@drawable/ic_cloudy" />
 
     <TextView
-        android:id="@+id/temperature"
+        android:id="@+id/temperatureView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/img_temperature"
-        app:layout_constraintEnd_toStartOf="@+id/list_days"
+        app:layout_constraintBottom_toBottomOf="@+id/temperatureImg"
+        app:layout_constraintEnd_toStartOf="@+id/daysRecycleView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_current_weather"
+        app:layout_constraintTop_toBottomOf="@+id/currentWeatherImg"
         tools:text="-25 C" />
 
     <ImageView
-        android:id="@+id/img_temperature"
+        android:id="@+id/temperatureImg"
         android:layout_width="20dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/temperature"
-        app:layout_constraintTop_toBottomOf="@+id/img_current_weather"
+        app:layout_constraintEnd_toStartOf="@+id/temperatureView"
+        app:layout_constraintTop_toBottomOf="@+id/currentWeatherImg"
         app:srcCompat="@drawable/ic_cold" />
 
 
