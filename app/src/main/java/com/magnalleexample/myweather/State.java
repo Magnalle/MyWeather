@@ -7,7 +7,7 @@ public class State {
         return number;
     }
 
-    static State data;
+    static private State data;
     private State(){}
     public static State getInstance(){
         if(data == null) {
