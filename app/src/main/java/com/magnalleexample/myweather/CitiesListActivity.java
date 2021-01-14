@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.View;
@@ -25,6 +26,7 @@ import java.util.List;
 
 public class CitiesListActivity extends AppCompatActivity {
 
+    public static final String cityNameKey = "cityName";
     ArrayList<String> citiesList;
     public MutableLiveData<String> CityText = new MutableLiveData<>();
 
@@ -39,6 +41,15 @@ public class CitiesListActivity extends AppCompatActivity {
 
         CitiesListAdapter adapter = new CitiesListAdapter(new CitiesListAdapter.DiffCallback());
         adapter.submitList(citiesList);
+        adapter.chosenCityName.observe(this, s ->{
+            if(!s.isEmpty()) {
+                Intent intent = new Intent();
+                intent.putExtra(cityNameKey, s);
+                setResult(RESULT_OK, intent);
+                s = "";
+                finish();
+            }
+        });
 
         RecyclerView.LayoutManager layoutManager
                 = new LinearLayoutManager(
@@ -60,6 +71,7 @@ public class CitiesListActivity extends AppCompatActivity {
                 adapter.submitList(currentList);
             }
         });
+
 
 
     }

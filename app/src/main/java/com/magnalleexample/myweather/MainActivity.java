@@ -1,11 +1,14 @@
 package com.magnalleexample.myweather;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -16,10 +19,14 @@ import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final int requestCodeChooseCity = 1;
     // Recycler View object
     RecyclerView recyclerView;
     // Array list for recycler view data source
     ArrayList<DaysData> source;
+    TextView cityView;
+    TextView currentTemperature;
+    TextView browseInternetView;
     int number = (int)(Math.random() * 100);
     final int DAY_LENGTH_MILLI = 24 * 3600 * 1000;
 
@@ -27,9 +34,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        recyclerView = (RecyclerView)findViewById(R.id.daysRecycleView);
-        TextView currentTemperature = (TextView)findViewById(R.id.temperatureView);
+        FindViews();
+
         currentTemperature.setText(Integer.toString(-25));
+        cityView.setOnClickListener(v ->{
+            Intent intent = new Intent(MainActivity.this, CitiesListActivity.class);
+            startActivityForResult(intent, requestCodeChooseCity);
+        });
+        browseInternetView.setOnClickListener(v ->{
+            Uri address = Uri.parse("https://yandex.ru/pogoda/");
+            Intent intent = new Intent(Intent.ACTION_VIEW, address);
+            startActivity(intent);
+        });
 
         AddItemsToRecyclerViewArrayList();
 
@@ -44,20 +60,13 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(adapter);
 
-        number = State.getInstance().getNumber();
-        setNumberToView();
-
-        addMessageToLog("OnCreate called.");
     }
 
-    void setNumberToView(){
-        TextView test = (TextView)findViewById(R.id.cityView);
-        test.setText(Integer.toString(number));
-    }
-
-    void addMessageToLog(String message){
-        Log.d("MyMessage", message);
-        Toast.makeText(this.getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    private void FindViews() {
+        recyclerView = (RecyclerView)findViewById(R.id.daysRecycleView);
+        currentTemperature = (TextView)findViewById(R.id.temperatureView);
+        cityView = (TextView) findViewById(R.id.cityView);
+        browseInternetView =  (TextView) findViewById(R.id.browseInternet);
     }
 
     public void AddItemsToRecyclerViewArrayList()
@@ -71,53 +80,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        addMessageToLog("OnStart called.");
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        addMessageToLog("OnRestart called.");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        addMessageToLog("OnResume called.");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        addMessageToLog("OnDestroy called.");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        addMessageToLog("OnStop called.");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        addMessageToLog("OnPause called.");
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == requestCodeChooseCity && resultCode == RESULT_OK){
+            cityView.setText(data.getStringExtra(CitiesListActivity.cityNameKey));
+        }
     }
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
-        //outState.putInt("Number", number);
+        outState.putString(CitiesListActivity.cityNameKey, cityView.getText().toString());
         super.onSaveInstanceState(outState);
-        addMessageToLog("onSaveInstanceState called.");
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        //number = savedInstanceState.getInt("Number");
-        //setNumberToView();
-        addMessageToLog("onRestoreInstanceState called.");
+        cityView.setText(savedInstanceState.getString(CitiesListActivity.cityNameKey));
     }
 }
