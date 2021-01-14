@@ -14,11 +14,11 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:text="@string/chooseCity"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Красноярск" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/daysRecycleView"
@@ -57,8 +57,21 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cityView"
+        app:layout_constraintTop_toBottomOf="@+id/browseInternet"
         app:srcCompat="@drawable/ic_cloudy" />
+
+    <TextView
+        android:id="@+id/browseInternet"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/browseInternet"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cityView" />
 
     <TextView
         android:id="@+id/temperatureView"
@@ -68,7 +81,7 @@
         android:layout_marginTop="8dp"
         android:textSize="36sp"
         app:layout_constraintStart_toEndOf="@+id/temperatureImg"
-        app:layout_constraintTop_toBottomOf="@+id/cityView"
+        app:layout_constraintTop_toBottomOf="@+id/browseInternet"
         tools:text="-25 C" />
 
     <ImageView
@@ -78,6 +91,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toEndOf="@+id/currentWeatherImg"
-        app:layout_constraintTop_toBottomOf="@+id/cityView"
+        app:layout_constraintTop_toBottomOf="@+id/browseInternet"
         app:srcCompat="@drawable/ic_cold" />
 </androidx.constraintlayout.widget.ConstraintLayout>

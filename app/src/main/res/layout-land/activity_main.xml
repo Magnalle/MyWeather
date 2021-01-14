@@ -14,10 +14,22 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:textSize="18sp"
+        android:text = "@string/chooseCity"
         app:layout_constraintEnd_toEndOf="@+id/currentWeatherImg"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Красноярск" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/browseInternet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/browseInternet"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/cityView"
+        app:layout_constraintLeft_toLeftOf="@+id/cityView"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -27,13 +39,15 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:fadeScrollbars="false"
         android:isScrollContainer="true"
         android:orientation="horizontal"
         android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/currentWeatherImg"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cityView"
         tools:listitem="@layout/item_days_list" />
 
 <!--    <androidx.recyclerview.widget.RecyclerView-->
@@ -57,7 +71,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cityView"
+        app:layout_constraintTop_toBottomOf="@+id/browseInternet"
         app:srcCompat="@drawable/ic_cloudy" />
 
     <TextView

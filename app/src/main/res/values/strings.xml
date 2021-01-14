@@ -3,4 +3,5 @@
     <string name="windSpeed">Show speed of wind</string>
     <string name="pressure">Show pressure</string>
     <string name="chooseCity">Enter the city:</string>
+    <string name="browseInternet">Browse Internet</string>
 </resources>

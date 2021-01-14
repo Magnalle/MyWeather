@@ -1,11 +1,13 @@
 package com.magnalleexample.myweather;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.ListAdapter;
@@ -15,6 +17,7 @@ import java.util.List;
 public class CitiesListAdapter
         extends ListAdapter<String, CitiesListAdapter.MyView> {
 
+    MutableLiveData<String>  chosenCityName = new MutableLiveData<>();
     public class MyView
             extends RecyclerView.ViewHolder {
 
@@ -65,6 +68,9 @@ public class CitiesListAdapter
                                  final int position)
     {
         holder.cityNameView.setText(getItem(position));
+        holder.cityNameView.setOnClickListener(v -> {
+            chosenCityName.setValue(holder.cityNameView.getText().toString());
+        });
     }
 
 }
